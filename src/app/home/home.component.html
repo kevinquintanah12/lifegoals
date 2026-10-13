@@ -1,0 +1,37 @@
+<section class="contenedor">
+  <h1>Mis metas en la vida</h1>
+
+  <p>
+    Escribe en el campo de texto.
+  </p>
+
+  <form (ngSubmit)="agregarMeta()">
+    <input
+      type="text"
+      name="nuevaMeta"
+      [(ngModel)]="nuevaMeta"
+      placeholder="Escribe una nueva meta"
+      maxlength="200"
+      required
+    />
+
+    <button type="submit">
+      Agregar meta
+    </button>
+  </form>
+
+  <h2>Mi lista de metas</h2>
+
+  <ul *ngIf="metas$ | async as metas">
+    <li *ngFor="let meta of metas">
+      <span>{{ meta.meta }}</span>
+
+      <button
+        type="button"
+        (click)="eliminarMeta(meta.id)"
+      >
+        Eliminar
+      </button>
+    </li>
+  </ul>
+</section>
